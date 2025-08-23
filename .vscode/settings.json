@@ -4,10 +4,12 @@
     "flutterTools.displayRiverpodContextMenu": false,
     "flutterTools.displayModularContextMenu": false,
     "cSpell.words": [
+        "allprojects",
         "firestore",
         "gracecottage",
         "imagepicker",
         "pathprovider",
         "spinkit"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
