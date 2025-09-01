@@ -26,7 +26,7 @@ if (flutterVersionName == null) {
 android {
     namespace = "com.example.gracecottage"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.012077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
