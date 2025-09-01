@@ -1,3 +1,30 @@
 {
-  "_comment": "Replace this file with your real google-services.json from Firebase Console"
+  "project_info": {
+    "project_number": "942487696229",
+    "firebase_url": "https://gracecottage.firebaseio.com",
+    "project_id": "gracecottage",
+    "storage_bucket": "gracecottage.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942487696229:android:6352f602fce16e649be78c",
+        "android_client_info": {
+          "package_name": "com.example.gracecottage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw2vKtOisJULpJdiG9yzNifF1vHREIPWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }
