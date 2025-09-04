@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
 import 'providers/product_provider.dart';
 import 'providers/cart_provider.dart';
@@ -11,13 +13,24 @@ import 'screens/main_nav_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug,
+    appleProvider: AppleProvider.debug,
+  );
   runApp(const GraceCottageApp());
 }
 
-class GraceCottageApp extends StatelessWidget {
+class GraceCottageApp extends StatefulWidget {
   const GraceCottageApp({super.key});
 
+  @override
+  State<GraceCottageApp> createState() => _GraceCottageAppState();
+}
+
+class _GraceCottageAppState extends State<GraceCottageApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -34,9 +47,7 @@ class GraceCottageApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const LoginScreen(),
-        routes: {
-          '/main': (_) => const MainNavScreen(),
-        },
+        routes: { '/main': (_) => const MainNavScreen(), },
       ),
     );
   }

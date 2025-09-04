@@ -14,8 +14,10 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _localLoading = false;
 
   Future<void> _refresh() async {
+    if (!mounted) return;
     setState(() => _localLoading = true);
     await Provider.of<ProductProvider>(context, listen: false).fetchProducts();
+    if (!mounted) return;
     setState(() => _localLoading = false);
   }
 
@@ -42,19 +44,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (ctx, i) {
                   final product = products[i];
                   return Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     elevation: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: ClipRRect(
-                            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                            borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(12)),
                             child: Image.network(
                               product.imageUrl,
                               fit: BoxFit.cover,
                               width: double.infinity,
-                              errorBuilder: (_, __, ___) => const Center(child: Icon(Icons.image_not_supported)),
+                              errorBuilder: (_, __, ___) => const Center(
+                                  child: Icon(Icons.image_not_supported)),
                             ),
                           ),
                         ),
@@ -63,16 +68,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                              Text("GHS ${product.price.toStringAsFixed(2)}", style: const TextStyle(color: Colors.green)),
+                              Text(product.name,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16)),
+                              Text("GHS ${product.price.toStringAsFixed(2)}",
+                                  style: const TextStyle(color: Colors.green)),
                               const SizedBox(height: 6),
                               ElevatedButton.icon(
-                                icon: const Icon(Icons.add_shopping_cart, size: 18),
+                                icon: const Icon(Icons.add_shopping_cart,
+                                    size: 18),
                                 label: const Text("Add"),
                                 onPressed: () {
-                                  cart.addItem(product.id, product.name, product.price, product.imageUrl);
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text("${product.name} added to cart"),
+                                  cart.addItem(product.id, product.name,
+                                      product.price, product.imageUrl);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content:
+                                        Text("${product.name} added to cart"),
                                     duration: const Duration(seconds: 1),
                                   ));
                                 },
